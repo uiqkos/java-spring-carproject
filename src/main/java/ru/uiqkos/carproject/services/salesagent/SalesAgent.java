@@ -18,5 +18,4 @@ public class SalesAgent {
     private String salesAgentLastName;
     private String phoneNumber;
     private String email;
-    private @ManyToOne Deal deal;
 }
