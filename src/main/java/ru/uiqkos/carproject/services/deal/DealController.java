@@ -16,8 +16,8 @@ public class DealController {
 
     @PostMapping(path = "/add")
     public @ResponseBody
-    Deal createVehicle(@RequestBody Deal salesAgent) {
-        return dealRepository.save(salesAgent);
+    Deal createDeal(@RequestBody Deal deal) {
+        return dealRepository.save(deal);
     }
 
     @GetMapping(path = "/list")

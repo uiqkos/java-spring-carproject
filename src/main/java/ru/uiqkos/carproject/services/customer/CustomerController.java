@@ -16,8 +16,8 @@ public class CustomerController {
 
     @PostMapping(path = "/add")
     public @ResponseBody
-    Customer createVehicle(@RequestBody Customer salesAgent) {
-        return customerRepository.save(salesAgent);
+    Customer createCustomer(@RequestBody Customer customer) {
+        return customerRepository.save(customer);
     }
 
     @GetMapping(path = "/list")

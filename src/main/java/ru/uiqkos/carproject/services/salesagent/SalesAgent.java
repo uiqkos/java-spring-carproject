@@ -3,11 +3,9 @@ package ru.uiqkos.carproject.services.salesagent;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.uiqkos.carproject.services.deal.Deal;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -16,8 +14,9 @@ import javax.persistence.Id;
 public class SalesAgent {
     private @Id
     @GeneratedValue(strategy = GenerationType.AUTO) Integer agentId;
-    private String customerFirstName;
-    private String customerLastName;
+    private String salesAgentFirstName;
+    private String salesAgentLastName;
     private String phoneNumber;
     private String email;
+    private @ManyToOne Deal deal;
 }

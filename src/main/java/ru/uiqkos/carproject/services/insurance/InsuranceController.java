@@ -16,8 +16,8 @@ public class InsuranceController {
 
     @PostMapping(path = "/add")
     public @ResponseBody
-    Insurance createVehicle(@RequestBody Insurance salesAgent) {
-        return insuranceRepository.save(salesAgent);
+    Insurance createInsurance(@RequestBody Insurance insurance) {
+        return insuranceRepository.save(insurance);
     }
 
     @GetMapping(path = "/list")

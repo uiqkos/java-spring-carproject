@@ -18,7 +18,7 @@ public class SalesAgentController {
 
     @PostMapping(path = "/add")
     public @ResponseBody
-    SalesAgent createVehicle(@RequestBody SalesAgent salesAgent) {
+    SalesAgent createSalesAgent(@RequestBody SalesAgent salesAgent) {
         return salesAgentRepository.save(salesAgent);
     }
 
