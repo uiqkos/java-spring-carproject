@@ -1,6 +1,9 @@
 package ru.uiqkos.carproject.services.vehicle;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,7 +20,8 @@ public class Vehicle {
     private @Id
     @GeneratedValue(strategy = GenerationType.AUTO) Integer vehicleId;
 
-    @JsonIgnore
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "trafficAccidentId")
+    @JsonIdentityReference(alwaysAsId = true)
     @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL)
     private List<TrafficAccident> trafficAccidents;
 
