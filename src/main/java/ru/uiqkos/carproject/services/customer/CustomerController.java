@@ -25,4 +25,31 @@ public class CustomerController {
     List<Customer> list() {
         return (List<Customer>) customerRepository.findAll();
     }
+    
+    @DeleteMapping(path = "/{id}/delete")
+    public boolean delete(@PathVariable String id) {
+        try {
+            customerRepository.delete(
+                customerRepository
+                    .findById(id)
+                    .orElseThrow()
+            );
+        } catch(Exception e) { return false; }
+        return true;
+    }
+
+    @PutMapping(path = "/{id}/update")
+    public @ResponseBody
+    Customer update(@RequestBody Customer newCustomer, @PathVariable String id) {
+        return customerRepository
+            .findById(id)
+            .map((customer) -> {
+                customer.setCustomerFirstName(newCustomer.getCustomerFirstName());
+                customer.setCustomerLastName(newCustomer.getCustomerLastName());
+                customer.setEmail(newCustomer.getEmail());
+                customer.setPhoneNumber(newCustomer.getPhoneNumber());
+                return customer;
+            })
+            .orElseGet(() -> customerRepository.save(newCustomer));
+    }
 }

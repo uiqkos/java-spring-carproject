@@ -21,7 +21,35 @@ public class VehicleController {
     }
 
     @GetMapping(path = "/list")
-    public  @ResponseBody List<Vehicle> list() {
+    public @ResponseBody List<Vehicle> list() {
         return (List<Vehicle>) vehicleRepository.findAll();
+    }
+
+    @DeleteMapping(path = "/{id}/delete")
+    public boolean delete(@PathVariable String id) {
+        try {
+            vehicleRepository.delete(
+                vehicleRepository
+                    .findById(id)
+                    .orElseThrow()
+            );
+        } catch(Exception e) { return false; }
+        return true;
+    }
+
+    @PutMapping(path = "/{id}/update")
+    public @ResponseBody Vehicle update(@RequestBody Vehicle newVehicle, @PathVariable String id) {
+        return vehicleRepository
+            .findById(id)
+            .map((vehicle) -> {
+                vehicle.setMake(newVehicle.getMake());
+                vehicle.setBodyType(newVehicle.getBodyType());
+                vehicle.setModel(newVehicle.getModel());
+                vehicle.setPrice(newVehicle.getPrice());
+                vehicle.setModelYear(newVehicle.getModelYear());
+                vehicle.setTrafficAccidents(newVehicle.getTrafficAccidents());
+                return vehicle;
+            })
+            .orElseGet(() -> vehicleRepository.save(newVehicle));
     }
 }

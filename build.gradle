@@ -6,7 +6,7 @@ plugins {
 
 group = 'ru.uiqkos'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '16'
+
 
 configurations {
     compileOnly {
@@ -27,8 +27,9 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
+    implementation group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'
 }
 
-test {
-    useJUnitPlatform()
-}
+//test {
+//    useJUnitPlatform()
+//}
